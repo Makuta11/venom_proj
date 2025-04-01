@@ -24,7 +24,12 @@ fs.createReadStream(path.resolve(__dirname, 'contacts.csv'))
 // Start Venom and send messages
 function startBot() {
   venom
-    .create()
+    .create({
+      session: 'opto-session',
+      headless: false, 
+      useChrome: true,
+      multidevice: true
+    })
     .then((client) => {
       contacts.slice(0, 20).forEach((contact, index) => {
         const message = `Hi, ${contact.name}: Marcus here from Optoceutics`;
